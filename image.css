@@ -1,0 +1,5 @@
+/* CSS File. Holds presentation style of website */
+#wrapper { 
+	width: 1000px; 
+	margin: 0 auto;
+}
