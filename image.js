@@ -8,10 +8,10 @@ function addImage(url){
 	console.log("Valid Url: " + url.match(pattern));
 	//Add the image
 	var elem = document.createElement("img");
-	//check image loaded
-	$("elem").on('load', function() {
-	  console.log("image is loaded in addImage(url)");
-	});
+	//check if image loaded
+	elem.onload = function () {
+		console.log("image is loaded in addImage(url)");
+	}
 	//Add image source
 	elem.src = url;
 	//Get the height and Width of the image
