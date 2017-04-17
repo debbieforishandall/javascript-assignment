@@ -15,6 +15,8 @@ function addImage(url){
 	//Add image source
 	elem.src = url;
 	//Get the height and Width of the image
+	console.log("elem.height" + elem.height);
+	console.log("elem.width" + elem.width);
 	var height = parseInt(elem.height);
     var width = parseInt(elem.width);
 	console.log("height: " + height);
@@ -31,6 +33,8 @@ function addImage(url){
 	//Set alt text and set image id as url
 	elem.setAttribute("alt", "planning");
 	elem.setAttribute("id", url);
+	//elem.setAttribute("onclick", imageClick);
+	elem.onclick = imageClick;
 	//append the image to the planning area
 	$("planning-area").appendChild(elem);
 	
@@ -53,10 +57,10 @@ window.onload=function(){
 	$("delete").onclick = deleteImage;
 	
 	//add the onClick method to all the children of planning-area
-	var noImages = document.getElementById("planning-area").childNodes.length;
-	var images = document.getElementById("planning-area").childNodes;
-	for(var i = 0; i < noImages; i++){
-		images[i].onclick = imageClick;
-	}
+	//var noImages = document.getElementById("planning-area").childNodes.length;
+	//var images = document.getElementById("planning-area").childNodes;
+	//for(var i = 0; i < noImages; i++){
+	//	images[i].onclick = imageClick;
+	//}
 }
 
