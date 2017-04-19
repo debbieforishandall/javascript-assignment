@@ -5,49 +5,49 @@
 function addImage(url){
 	clearError();
 	//check if url is valid
-	var pattern = /^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$/i;
-	console.log("Valid Url: " + url.match(pattern));
-	//Add the image
-	var elem = document.createElement("img");
-	var height = 0;
-	var width = 0;
-	//check if image loaded
-	elem.onload = function () {
-		console.log("image is loaded in addImage(url)");
-		height = parseInt(elem.height);
-		width = parseInt(elem.width);
-		//Get the height and Width of the image
-		console.log("height: " + height);
-		console.log("widht: " + width);
+	if(isValidUrl()){
+		//Add the image
+		var elem = document.createElement("img");
+		var height = 0;
+		var width = 0;
+		//check if image loaded
+		elem.onload = function () {
+			console.log("image is loaded in addImage(url)");
+			height = parseInt(elem.height);
+			width = parseInt(elem.width);
+			//Get the height and Width of the image
+			console.log("height: " + height);
+			console.log("widht: " + width);
+		}
+		//Add image source
+		elem.src = url;
+		
+		//Set height to 100 if greater than 100
+		if(height > 100){
+			console.log("greater");
+			elem.setAttribute("height", "100");
+		} else{
+			elem.setAttribute("height", height);
+		}
+		//Set width to 100 if greater than 100
+		if(width > 100){
+			elem.setAttribute("width", "100");
+		} else {
+			elem.setAttribute("width", width);
+		}
+		//Set alt text and set image id as url
+		elem.setAttribute("alt", "planning");
+		elem.setAttribute("id", url);
+		elem.setAttribute("onclick", imageClick);
+		elem.setAttribute("onfocus", zoomPicture);
+		//elem.onclick = imageClick;
+		//elem.onfocus = zoomPicture;
+		//append the image to the planning area
+		$("planning-area").appendChild(elem);
+	} else {
+		//add an error to the error text
+		$("error").innerHTML = "Error url invalid";
 	}
-	//Add image source
-	elem.src = url;
-	
-	//testing something
-	console.log("elem.height" + elem.height);
-	console.log("elem.width" + elem.width);
-	
-	
-	//TODO: fix this height and width
-	elem.setAttribute("height", "100");
-	elem.setAttribute("width", "100");
-	//Set height to 100 if greater than 100
-	/*if(height > 100){
-		console.log("greater");
-		elem.setAttribute("height", "100");
-	}
-	//Set width to 100 if greater than 100
-	if(width > 100){
-		elem.setAttribute("width", "100");
-	} */
-	//Set alt text and set image id as url
-	elem.setAttribute("alt", "planning");
-	elem.setAttribute("id", url);
-	//elem.setAttribute("onclick", imageClick);
-	elem.onclick = imageClick;
-	elem.onfocus = zoomPicture;
-	//append the image to the planning area
-	$("planning-area").appendChild(elem);
 	
 }
 
@@ -56,15 +56,21 @@ function addImage(url){
 function deleteImage(url){
 	clearError();
 	//check if url is valid
-	//check  if url is on planning area
-	if($(url)){
-		//TODO: delete the object
-		var elem = $(url).remove();
-	}
-	else{
+	if(isValidUrl()){
+		//check  if url is on planning area
+		if($(url)){
+			//TODO: delete the object
+			var elem = $(url).remove();
+		}
+		else{
+			//add an error to the error text
+			$("error").innerHTML = "Error image with specified url is not in planning area";
+		}
+	} else {
 		//add an error to the error text
-		$("error").innerHTML = "Error image with specified url is not in planning area";
+		$("error").innerHTML = "Error url invalid";
 	}
+	
 	
 }
 
@@ -76,7 +82,15 @@ function clearError(){
 
 //Handles clicks on image
 function imageClick(){
+	console.log("In imageClick(), id is: " + this.id);
 	$("input-url").innerHTML = this.id;
+}
+
+function isValidUrl(){
+	//TODO: fix this
+	var pattern = /^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$/i;
+	console.log("Valid Url: " + url.match(pattern));
+	return true;
 }
 
 //Zooms focused picture
@@ -84,6 +98,7 @@ function zoomPicture(){
 	//Get original width
 	var origHeight = this.naturalHeight;
 	var origWidth = this.naturalWidth;
+	console.log("In zoomPicture, origHeight: " + origHeight);
 	if(origHeight > 500 &&  origWidth > 500){
 		this.height = 500;
 		this.width = 500;
