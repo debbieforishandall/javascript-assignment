@@ -86,7 +86,7 @@ function clearError(){
 //Handles clicks on image
 function imageClick(){
 	console.log("In imageClick(), id is: " + this.id);
-	$("input-url").text = this.id;
+	$("input-url").value = this.id;
 }
 
 function isValidUrl(url){
