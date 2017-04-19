@@ -5,7 +5,7 @@
 function addImage(url){
 	clearError();
 	//check if url is valid
-	if(isValidUrl()){
+	if(isValidUrl(url)){
 		//Add the image
 		var elem = document.createElement("img");
 		var height = 0;
@@ -22,8 +22,12 @@ function addImage(url){
 		//Add image source
 		elem.src = url;
 		
+		//TODO: remove this temp fix
+		elem.setAttribute("height", "100");
+		elem.setAttribute("width", "100");
+		
 		//Set height to 100 if greater than 100
-		if(height > 100){
+		/*if(height > 100){
 			console.log("greater");
 			elem.setAttribute("height", "100");
 		} else{
@@ -34,14 +38,13 @@ function addImage(url){
 			elem.setAttribute("width", "100");
 		} else {
 			elem.setAttribute("width", width);
-		}
+		}*/
 		//Set alt text and set image id as url
 		elem.setAttribute("alt", "planning");
 		elem.setAttribute("id", url);
-		elem.setAttribute("onclick", imageClick);
-		elem.setAttribute("onfocus", zoomPicture);
-		//elem.onclick = imageClick;
-		//elem.onfocus = zoomPicture;
+		elem.addEventListener('click', imageClick);
+		elem.addEventListener('focus', zoomPicture);
+		
 		//append the image to the planning area
 		$("planning-area").appendChild(elem);
 	} else {
@@ -56,7 +59,7 @@ function addImage(url){
 function deleteImage(url){
 	clearError();
 	//check if url is valid
-	if(isValidUrl()){
+	if(isValidUrl(url)){
 		//check  if url is on planning area
 		if($(url)){
 			//TODO: delete the object
@@ -83,10 +86,10 @@ function clearError(){
 //Handles clicks on image
 function imageClick(){
 	console.log("In imageClick(), id is: " + this.id);
-	$("input-url").innerHTML = this.id;
+	$("input-url").text = this.id;
 }
 
-function isValidUrl(){
+function isValidUrl(url){
 	//TODO: fix this
 	var pattern = /^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$/i;
 	console.log("Valid Url: " + url.match(pattern));
@@ -95,6 +98,7 @@ function isValidUrl(){
 
 //Zooms focused picture
 function zoomPicture(){
+	console.log("In zoomPicture");
 	//Get original width
 	var origHeight = this.naturalHeight;
 	var origWidth = this.naturalWidth;
