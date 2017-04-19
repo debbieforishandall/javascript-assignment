@@ -27,8 +27,9 @@ function imageClick() {
 //Checks if url is valid
 function isValidUrl(url) {
 	"use strict";
-	//TODO: fix this
+	//fix this
 	//var pattern = /^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$/i;
+	//Copyright (c) 2010-2013 Diego Perini (http://www.iport.it)
 	var pattern = new RegExp(
 	  "^" +
 		// protocol identifier
@@ -125,6 +126,7 @@ function notDuplicate(url) {
 function addImage(url) {
 	"use strict";
 	clearError();
+	//console.log("in addImage isValidUrl(url) is: " + isValidUrl(url));
 	//check if url is valid and not duplicate of image already in planning area
 	if(isValidUrl(url) && notDuplicate(url)) {
 		//Add the image
