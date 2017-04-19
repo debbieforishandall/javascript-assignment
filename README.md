@@ -1,7 +1,7 @@
 # javascript-assignment
 Javascript Assignment that allows users to enter in image urls and adds url to a plaaning area if the url is valid
 
-Hosting Service Url: 
+Hosting Service Url: https://nerdluv.000webhostapp.com/image.html
 
 Github Url: https://github.com/debbieforishandall/javascript-assignment
 
