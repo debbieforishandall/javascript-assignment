@@ -5,7 +5,7 @@
 function addImage(url){
 	clearError();
 	//check if url is valid
-	if(isValidUrl(url)){
+	if(isValidUrl(url) ){
 		//Add the image
 		var elem = document.createElement("img");
 		var height = 0;
@@ -13,11 +13,14 @@ function addImage(url){
 		//check if image loaded
 		elem.onload = function () {
 			console.log("image is loaded in addImage(url)");
-			height = parseInt(elem.height);
-			width = parseInt(elem.width);
+			height = parseInt(elem.naturalHeight);
+			width = parseInt(elem.naturalWidth);
 			//Get the height and Width of the image
 			console.log("height: " + height);
-			console.log("widht: " + width);
+			console.log("widht: " + width);	
+			//Add mouse eneter and mouse leave functions
+			elem.addEventListener('mouseenter', zoomPicture);
+			elem.addEventListener('mouseleave', zoomOut);
 		}
 		//Add image source
 		elem.src = url;
@@ -27,7 +30,7 @@ function addImage(url){
 		elem.setAttribute("width", "100");
 		
 		//Set height to 100 if greater than 100
-		/*if(height > 100){
+		if(height > 100){
 			console.log("greater");
 			elem.setAttribute("height", "100");
 		} else{
@@ -38,12 +41,11 @@ function addImage(url){
 			elem.setAttribute("width", "100");
 		} else {
 			elem.setAttribute("width", width);
-		}*/
+		}
 		//Set alt text and set image id as url
-		elem.setAttribute("alt", "planning");
+		elem.setAttribute("alt", "planning image");
 		elem.setAttribute("id", url);
 		elem.addEventListener('click', imageClick);
-		elem.addEventListener('mouseover', zoomPicture);
 		
 		//append the image to the planning area
 		$("planning-area").appendChild(elem);
@@ -110,6 +112,20 @@ function zoomPicture(){
 		this.height = origHeight;
 		this.width = origWidth;
 	}	
+}
+
+function zoomOut(){
+	if(this.naturalHeight > 100){
+		this.height = 100;
+	} else {
+		this.height = this.naturalHeight;
+	}
+	if(this.naturalwidth < 100){
+		this.width = 100;
+	} else {
+		this.width = this.naturalWidth;
+	}
+	
 }
 
 window.onload=function(){
