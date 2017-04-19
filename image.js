@@ -215,7 +215,7 @@ window.onload=function () {
 		deleteImage($("input-url").value);
 	});
 	//On input into the input-url element, clear errors
-	$("input-url").onkeypress = clearError;
+	$("input-url").onkeyup = clearError;
 	
 	//add the onClick method to all the children of planning-area
 	//var noImages = document.getElementById("planning-area").childNodes.length;
