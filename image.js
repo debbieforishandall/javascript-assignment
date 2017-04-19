@@ -43,7 +43,7 @@ function addImage(url){
 		elem.setAttribute("alt", "planning");
 		elem.setAttribute("id", url);
 		elem.addEventListener('click', imageClick);
-		elem.addEventListener('hover', zoomPicture);
+		elem.addEventListener('mouseover', zoomPicture);
 		
 		//append the image to the planning area
 		$("planning-area").appendChild(elem);
