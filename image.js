@@ -83,6 +83,22 @@ function addImage(url) {
 			//Get the height and Width of the image
 			console.log("height: " + height);
 			console.log("widht: " + width);
+			
+			//Set height to 100 if greater than 100
+			if(height > 100) {
+				console.log("greater");
+				elem.setAttribute("height", "100");
+			} else {
+				console.log("less");
+				elem.setAttribute("height", height);
+			}
+			//Set width to 100 if greater than 100
+			if(width > 100) {
+				elem.setAttribute("width", "100");
+			} else {
+				elem.setAttribute("width", width);
+			}
+		
 			//Add mouse eneter and mouse leave functions
 			elem.addEventListener("mouseover", zoomPicture);
 			elem.addEventListener("mouseout", zoomOut);			
@@ -90,23 +106,6 @@ function addImage(url) {
 		//Add image source
 		elem.src = url;
 		
-		console.log(" outside height: " + height);
-		console.log("outside width: " + width);	
-		
-		//Set height to 100 if greater than 100
-		if(height > 100) {
-			console.log("greater");
-			elem.setAttribute("height", "100");
-		} else {
-			console.log("less");
-			elem.setAttribute("height", height);
-		}
-		//Set width to 100 if greater than 100
-		if(width > 100) {
-			elem.setAttribute("width", "100");
-		} else {
-			elem.setAttribute("width", width);
-		}
 		//Set alt text and set image id as url
 		elem.setAttribute("alt", "planning image");
 		elem.setAttribute("id", url);
