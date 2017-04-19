@@ -3,3 +3,8 @@
 	width: 1000px; 
 	margin: 0 auto;
 }
+
+#error{
+	color: red;
+	font-weight: bold;
+}
