@@ -17,23 +17,23 @@ function addImage(url){
 			width = parseInt(elem.naturalWidth);
 			//Get the height and Width of the image
 			console.log("height: " + height);
-			console.log("widht: " + width);	
+			console.log("widht: " + width);
 			//Add mouse eneter and mouse leave functions
-			elem.addEventListener('mouseenter', zoomPicture);
-			elem.addEventListener('mouseleave', zoomOut);
+			elem.addEventListener('mouseover', zoomPicture);
+			elem.addEventListener('mouseout', zoomOut);			
 		}
 		//Add image source
 		elem.src = url;
 		
-		//TODO: remove this temp fix
-		elem.setAttribute("height", "100");
-		elem.setAttribute("width", "100");
+		console.log(" outside height: " + height);
+		console.log("outside width: " + width);	
 		
 		//Set height to 100 if greater than 100
 		if(height > 100){
 			console.log("greater");
 			elem.setAttribute("height", "100");
 		} else{
+			console.log("less");
 			elem.setAttribute("height", height);
 		}
 		//Set width to 100 if greater than 100
