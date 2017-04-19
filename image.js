@@ -8,6 +8,7 @@
  /*jslint browser: true*/
  /*global window*/
  /*jslint this: true */
+ /*jslint for: true */
  
 //Clears the error paragraph
 function clearError() {
@@ -52,25 +53,37 @@ function zoomPicture() {
 //zooms out of unfocused picture
 function zoomOut() {
 	"use strict";
-	if(this.naturalHeight > 100){
-		this.height = 100;
-	} else {
-		this.height = this.naturalHeight;
-	}
 	if(this.naturalwidth > 100){
 		this.width = 100;
 	} else {
 		this.width = this.naturalWidth;
 	}
-	
+	if(this.naturalHeight > 100){
+		this.height = 100;
+	} else {
+		this.height = this.naturalHeight;
+	}
+}
+
+//checks if picture is already in planning area
+function notDuplicate(url) {
+	"use strict";
+	var noImages = document.getElementById("planning-area").childNodes.length;
+	var i = 0;
+	for(i = 0; i < noImages; i+=1) {
+		if($(url)){
+			return false;
+		}
+	}
+	return true;
 }
 
 //Checks if a url is valid,if so, adds it to the planning area
 function addImage(url) {
 	"use strict";
 	clearError();
-	//check if url is valid
-	if(isValidUrl(url)) {
+	//check if url is valid and not duplicate of image already in planning area
+	if(isValidUrl(url) && notDuplicate(url)) {
 		//Add the image
 		var elem = document.createElement("img");
 		var height = 0;
