@@ -82,7 +82,15 @@ function addImage(url) {
 			width = parseInt(elem.naturalWidth);
 			//Get the height and Width of the image
 			console.log("height: " + height);
-			console.log("widht: " + width);
+			console.log("width: " + width);
+			
+			//Set width to 100 if greater than 100
+			if(width > 100) {
+				console.log("greater Width");
+				elem.setAttribute("width", "100");
+			} else {
+				elem.setAttribute("width", width);
+			}
 			
 			//Set height to 100 if greater than 100
 			if(height > 100) {
@@ -92,12 +100,7 @@ function addImage(url) {
 				console.log("less");
 				elem.setAttribute("height", height);
 			}
-			//Set width to 100 if greater than 100
-			if(width > 100) {
-				elem.setAttribute("width", "100");
-			} else {
-				elem.setAttribute("width", width);
-			}
+			
 		
 			//Add mouse eneter and mouse leave functions
 			elem.addEventListener("mouseover", zoomPicture);
