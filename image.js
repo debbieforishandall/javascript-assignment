@@ -6,7 +6,7 @@ function addImage(url){
 	clearError();
 	//check if url is valid
 	var pattern = /^(http\:\/\/|https\:\/\/)?([a-z0-9][a-z0-9\-]*\.)+[a-z0-9][a-z0-9\-]*$/i;
-	console.log("Valid Url: " + url.match(pattern)[0]);
+	console.log("Valid Url: " + url.match(pattern));
 	//Add the image
 	var elem = document.createElement("img");
 	var height = 0;
@@ -59,10 +59,7 @@ function deleteImage(url){
 	//check  if url is on planning area
 	if($(url)){
 		//TODO: delete the object
-		clear: function(element) {
-        element = $(url);
-		Event.stopObserving(element);
-		return element.update();
+		var elem = $(url).remove();
 	}
 	else{
 		//add an error to the error text
