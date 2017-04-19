@@ -36,32 +36,39 @@ function isValidUrl(url) {
 //Zooms focused picture
 function zoomPicture() {
 	"use strict";
-	console.log("In zoomPicture");
+	//console.log("In zoomPicture");
 	//Get original width
-	var origHeight = this.naturalHeight;
-	var origWidth = this.naturalWidth;
+	var origHeight = parseInt(this.naturalHeight);
+	var origWidth = parseInt(this.naturalWidth);
 	console.log("In zoomPicture, origHeight: " + origHeight);
+	console.log("In zoomPicture, origWidth: " + origWidth);
 	if(origHeight > 500 && origWidth > 500){
 		this.height = 500;
 		this.width = 500;
+		console.log("in zoomPicture(), height is set to: " + this.height);
+		console.log("in zoomPicture(), width is set to: " + this.width);
 	} else{
 		this.height = origHeight;
 		this.width = origWidth;
+		console.log("in zoomPicture(), width is set to: " + this.width);
 	}	
 }
 
 //zooms out of unfocused picture
 function zoomOut() {
 	"use strict";
-	if(this.naturalwidth > 100){
+	console.log("In zoomOut, naturalWidth: " + this.naturalWidth);
+	if(parseInt(this.naturalWidth) > 100){
 		this.width = 100;
+		console.log("in zoomOut(), greater , width is set to: " + this.width);
 	} else {
-		this.width = this.naturalWidth;
+		this.width = parseInt(this.naturalWidth);
+		console.log("in zoomOut(), width is set to: " + this.width);
 	}
-	if(this.naturalHeight > 100){
+	if(parseInt(this.naturalHeight) > 100){
 		this.height = 100;
 	} else {
-		this.height = this.naturalHeight;
+		this.height = parseInt(this.naturalHeight);
 	}
 }
 
@@ -131,7 +138,7 @@ function addImage(url) {
 		$("planning-area").appendChild(elem);
 	} else {
 		//add an error to the error text
-		$("error").innerHTML = "Error url invalid";
+		$("error").innerHTML = "Error url invalid or already in planning area";
 	}
 	
 }
